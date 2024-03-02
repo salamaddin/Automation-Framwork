@@ -12,6 +12,7 @@ public class Scripts {
     private int index;
     private FilloXL xl;
     private TestData testData;
+    private String masterDriverPath ="C:/Users/arka.sarkar/Desktop/Data/MasterDriver.xlsx";
 
     public Scripts() throws Exception {
         loadScripts();
@@ -20,10 +21,11 @@ public class Scripts {
     public void loadScripts() throws Exception {
         xl = new FilloXL();
         scripts = new HashMap<Integer, Script>();
-        xl.getRecords("C:/Users/arka.sarkar/Desktop/temp/MasterDriver.xlsx", "Scripts", " Run='Y'");
+        xl.getRecords(masterDriverPath, "Scripts", " Run='Y'");
         while (xl.next()) {
             Script temp = new Script();
             temp.setTestID(xl.get("TestID"));
+            temp.setTestTitle(xl.get("Test Title"));
             autoInc++;
             scripts.put(autoInc, temp);
         }
@@ -35,41 +37,36 @@ public class Scripts {
     }
 
     public boolean hasNext() {
-        return currScriptIndex < scripts.size();
+        return currScriptIndex <= scripts.size();
     }
 
-    public void runCurrentScript() throws Exception {
+    public void executeTest() throws Exception {
         xl = new FilloXL();
         setNext();
         testData = new TestData(curr, null);
-        index = 2;
+        index = 1;
         System.out.println("Current Test ID: " + curr.getTestID());
-        xl.getRecords("C:/Users/arka.sarkar/Desktop/temp/ACT_MasterDriver.xlsx", "TAComponents",
-                " TestID ='" + curr.getTestID() + "'");
+        xl.getRecords(masterDriverPath, "Components"," TestID ='" + curr.getTestID() + "'");
 
         while (xl.next()) {
-            String components = xl.get(index);
             getComponentName();
-            while (!"".contentEquals(cmpName)) {
-                index++;
+            while (!"".contentEquals(cmpName)) {              
                 System.out.println("Component: " + cmpName);
-                getComponentName();
-
-                Class<?> className = Class.forName("components.TestComponent");
-                java.lang.reflect.Constructor<?> constructor = className.getDeclaredConstructor(Script.class, User.class);
-
-                // Specify constructor parameters
-                Object[] constructorParams = { scripts.get(currScriptIndex - 1), null };
-
-                // Create an instance using the constructor with parameters
-                Object obj = constructor.newInstance(constructorParams);
-                Method method = className.getMethod("run");
-                method.invoke(obj);
+	              try {
+	              Class<?> testClass = Class.forName(cmpName);
+	              Object testInstance = testClass.getDeclaredConstructor().newInstance();
+	  
+	              testClass.getMethod("executeTest").invoke(testInstance);
+		          } catch (Exception e) {
+		              e.printStackTrace();
+		          }
+	              getComponentName();
             }
         }
     }
 
     public void getComponentName() throws Exception {
         cmpName = xl.get(index);
+        index++;
     }
 }

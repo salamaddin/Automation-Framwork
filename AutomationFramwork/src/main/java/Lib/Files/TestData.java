@@ -6,6 +6,7 @@ public class TestData {
 	Script script;
 	FilloXL xl;
 	String filePath;
+	   private String testDataPath ="C:/Users/arka.sarkar/Desktop/Data/";
 	protected static HashMap<String, User> env;
 
 	public TestData(Script script, HashMap<String, User> env) throws Exception
@@ -26,9 +27,9 @@ public class TestData {
 	
 	public void loadTestData() throws Exception {
 		try {
-			filePath = "C:/Users/arka.sarkar/Desktop/temp/";
-			String testDataFilePath = filePath + script.getTestID()+".xlsx";
+			String testDataFilePath = testDataPath + script.getTestID()+".xlsx";
 			xl.getRecords(testDataFilePath, "TestData");
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.print("Test data is not found");

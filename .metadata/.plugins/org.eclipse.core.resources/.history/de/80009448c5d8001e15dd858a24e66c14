@@ -1,0 +1,20 @@
+package Lib.Files;
+
+import java.util.HashMap;
+
+public class BaseTest {
+    protected HashMap<String, String> testDataMap;
+
+    public BaseTest() {
+        testDataMap = new HashMap<>();
+    }
+
+    public void setTestData(String key, String value) {
+        testDataMap.put(key, value);
+    }
+
+    public String getTestData(String key) {
+        return testDataMap.get(key);
+    }
+}
+

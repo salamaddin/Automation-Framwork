@@ -1,0 +1,7 @@
+package com;
+
+public class LogOut {
+	public void executeTest() {
+		System.out.println("LogOut");
+	}
+}
