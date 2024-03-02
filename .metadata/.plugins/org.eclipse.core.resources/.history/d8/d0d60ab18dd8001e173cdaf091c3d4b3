@@ -1,0 +1,31 @@
+package execution;
+
+import java.lang.reflect.Method;
+
+public class TestExecutor {
+
+    public static void executeTests(String[] testClasses) {
+        try {
+            for (String className : testClasses) {
+                Class<?> testClass = Class.forName(className);
+                Object testInstance = testClass.getDeclaredConstructor().newInstance();
+
+                Method testMethod = testClass.getMethod("executeTest");
+                testMethod.invoke(testInstance);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        // Read test class names from Excel or any other source
+        String[] testClasses = {
+                "tests.LoginTest",
+                "tests.RegisterTest",
+                "tests.VerifyLogoutTest"
+        };
+
+        executeTests(testClasses);
+    }
+}
