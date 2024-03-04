@@ -84,6 +84,7 @@ public class FilloXL {
 		try {
 			ret = rs.getField(fieldName);
 		} catch (Exception e) {
+			System.out.println(("Column => " + fieldName + " does not exist in the excel file"));
 		}
 
 		return ret;

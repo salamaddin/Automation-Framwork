@@ -1,0 +1,23 @@
+package Lib.Files;
+
+import java.util.HashMap;
+
+
+public class Base {
+    protected HashMap<String, String> testDataMap;
+    public TestData testData;
+
+    public Base() {
+    }
+    
+
+    public void setTestData(TestData testData) {
+    	this.testData = testData;
+    	String s =  testData.val("Username");
+    }
+
+    public String getData(String colName) {
+        return testData.val(colName);
+    }
+}
+

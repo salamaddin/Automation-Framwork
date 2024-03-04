@@ -3,4 +3,7 @@
     <fullyQualifiedTypeName name="Lib.Files.Scripts"/>
     <fullyQualifiedTypeName name="java.lang.reflect.Method"/>
     <fullyQualifiedTypeName name="org.openqa.selenium.bidi.Script"/>
+    <fullyQualifiedTypeName name="io.opentelemetry.exporter.logging.SystemOutLogRecordExporter"/>
+    <fullyQualifiedTypeName name="com.codoid.products.exception.FilloException"/>
+    <fullyQualifiedTypeName name="Lib.Files.Base"/>
 </qualifiedTypeNameHistroy>

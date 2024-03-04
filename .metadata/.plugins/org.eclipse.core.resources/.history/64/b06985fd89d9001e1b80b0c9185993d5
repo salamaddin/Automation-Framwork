@@ -1,0 +1,10 @@
+package com.test;
+
+import Lib.Files.Base;
+
+public class Login extends Base {
+    public void executeTest(Base base) {
+        String user = base.getData("Username");
+        System.out.println(user);
+    }
+}
