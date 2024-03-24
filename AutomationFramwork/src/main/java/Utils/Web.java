@@ -1,4 +1,4 @@
-package Utilts;
+package Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class Web extends  {
+public class Web extends Util {
 	WebDriver driver = null;
 
 	public Web(String browserType) {
@@ -33,6 +33,7 @@ public class Web extends  {
 	
 	public void launchUrl(String url) {
 		driver.get(url);
+		maximizeWindow();
 	}
 	
 	public WebElement getObject(String xpath) {

@@ -2,16 +2,20 @@ package Lib.Files;
 
 import java.util.HashMap;
 
+import org.apache.poi.xdgf.util.Util;
 
-public class Base {
+import Utils.Web;
+
+
+public class Base extends Util{
     protected HashMap<String, String> testDataMap;
     public TestData testData;
     public Web web;
     public String name;
-
-    public Base() {
-    }
     
+    public Base() {
+      //  this.web = new Web("chrome");
+    }
 
     public void setTestData(TestData testData) {
     	 this.testData = testData;
@@ -21,9 +25,10 @@ public class Base {
         return testData.get(colName);
     }
 
-
-	public void setWeb() {
-		name = "Sk";
+	public void setWeb(Web web) {
+		this.web = web;	
 	}
+
+	
 }
 

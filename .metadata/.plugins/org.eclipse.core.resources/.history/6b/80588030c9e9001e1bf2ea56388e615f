@@ -1,0 +1,30 @@
+package com.pages;
+
+public class LoginPg {
+	public String emailTextXP = "//input[@placeholder='Email']";
+	public String passwordXP = "//input[@placeholder='Password']";
+	public String loginBtnXP = "//button[.='Login']";
+	public String authenticationXP ="//h2[contains(text(),'Hi,')]";
+	
+
+	
+	public void login() {
+
+//		hm.nevigateToLoginPage().click();
+//		hm.gotItBtn().click();
+//		
+//		emailText().sendKeys(email);
+//		passwordText().sendKeys(password);
+//		loginBtn().click();
+	}
+	
+	
+//	public void authenticationTest(Reporter reporter) {
+//		if (web.exists(authenticationXP)) {
+//			reporter.pass("Successfuly logged in");
+//		} else {
+//			reporter.fail("Login failed");
+//		}
+//	}
+
+}

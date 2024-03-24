@@ -3,6 +3,8 @@ package Lib.Files;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
+import Utils.Web;
+
 public class Scripts {
     private HashMap<Integer, Script> scripts;
     private int autoInc = 0;
@@ -12,6 +14,7 @@ public class Scripts {
     private int index;
     private FilloXL xl;
     private TestData testData;
+    private Web web;
     private String masterDriverPath ="C:/Users/arka.sarkar/Desktop/Data/MasterDriver.xlsx";
 
     public Scripts() throws Exception {
@@ -43,9 +46,10 @@ public class Scripts {
     public void executeTest() throws Exception {
         setNext();
         testData = new TestData(curr);
-        
+        web = new Web("chrome");
         Base base = new Base();
         base.setTestData(testData);
+        base.setWeb(web);
         index = 1;
         System.out.println("Current Test ID: " + curr.getTestID());
         xl.getRecords(masterDriverPath, "Components"," TestID ='" + curr.getTestID() + "'");
@@ -66,6 +70,7 @@ public class Scripts {
 	              getComponentName();
             }
         }
+        web.quit();
     }
 
     public void getComponentName() throws Exception {

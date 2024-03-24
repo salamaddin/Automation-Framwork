@@ -38,8 +38,7 @@ public class TestData {
 		String ret  = "";
 		try
 		{
-			//ret  = xl.get(colName);
-//			while(xl.next())
+			xl.next();
 			ret  = xl.get(colName);
 		}
 		catch(Exception e)

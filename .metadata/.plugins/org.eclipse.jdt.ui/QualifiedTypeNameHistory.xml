@@ -6,4 +6,5 @@
     <fullyQualifiedTypeName name="io.opentelemetry.exporter.logging.SystemOutLogRecordExporter"/>
     <fullyQualifiedTypeName name="com.codoid.products.exception.FilloException"/>
     <fullyQualifiedTypeName name="Lib.Files.Base"/>
+    <fullyQualifiedTypeName name="Utils.Web"/>
 </qualifiedTypeNameHistroy>

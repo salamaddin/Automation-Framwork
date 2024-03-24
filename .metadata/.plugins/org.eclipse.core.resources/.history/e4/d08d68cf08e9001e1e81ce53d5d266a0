@@ -1,0 +1,32 @@
+package Lib.Files;
+
+import java.util.HashMap;
+
+import Utils.Web;
+
+
+public class Base extends Web{
+    protected HashMap<String, String> testDataMap;
+    public TestData testData;
+    public Web web;
+    public String name;
+
+    public Base() {
+    	super("chrome");
+    }
+    
+
+    public void setTestData(TestData testData) {
+    	 this.testData = testData;
+    }
+
+    public String getData(String colName) {
+        return testData.get(colName);
+    }
+
+	public void setWeb(Web web) {
+		this.web = web;
+		
+	}
+}
+

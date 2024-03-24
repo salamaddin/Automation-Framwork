@@ -1,7 +1,0 @@
-package com;
-
-public class LogIn {
-	public void executeTest() {
-		System.out.println("Login");
-	}
-}
