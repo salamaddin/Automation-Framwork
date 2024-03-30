@@ -5,6 +5,8 @@
     <fullyQualifiedTypeName name="org.openqa.selenium.bidi.Script"/>
     <fullyQualifiedTypeName name="io.opentelemetry.exporter.logging.SystemOutLogRecordExporter"/>
     <fullyQualifiedTypeName name="com.codoid.products.exception.FilloException"/>
-    <fullyQualifiedTypeName name="Lib.Files.Base"/>
     <fullyQualifiedTypeName name="Utils.Web"/>
+    <fullyQualifiedTypeName name="Lib.Files.Base"/>
+    <fullyQualifiedTypeName name="com.pages.LoginPg"/>
+    <fullyQualifiedTypeName name="Utils.O"/>
 </qualifiedTypeNameHistroy>

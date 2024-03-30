@@ -3,6 +3,7 @@ package Lib.Files;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 
+import Utils.Reporter;
 import Utils.Web;
 
 public class Scripts {
@@ -15,7 +16,9 @@ public class Scripts {
     private FilloXL xl;
     private TestData testData;
     private Web web;
+    private Reporter reporter;
     private String masterDriverPath ="C:/Users/arka.sarkar/Desktop/Data/MasterDriver.xlsx";
+    private String reportPath ="C:/Users/arka.sarkar/Desktop/Data/";
 
     public Scripts() throws Exception {
         loadScripts();
@@ -29,6 +32,7 @@ public class Scripts {
             Script temp = new Script();
             temp.setTestID(xl.get("TestID"));
             temp.setTestTitle(xl.get("Test Title"));
+            temp.setTestDescription(xl.get("Test Description"));
             autoInc++;
             scripts.put(autoInc, temp);
         }
@@ -47,9 +51,13 @@ public class Scripts {
         setNext();
         testData = new TestData(curr);
         web = new Web("chrome");
+        reporter = new Reporter(reportPath +curr.getTestID()+ "_"+ curr.getTestDescription());
+        Reporter.createTest(curr.getTestTitle(), curr.getTestDescription());
         Base base = new Base();
         base.setTestData(testData);
         base.setWeb(web);
+        base.setReporter(reporter);
+        
         index = 1;
         System.out.println("Current Test ID: " + curr.getTestID());
         xl.getRecords(masterDriverPath, "Components"," TestID ='" + curr.getTestID() + "'");
@@ -70,7 +78,9 @@ public class Scripts {
 	              getComponentName();
             }
         }
+        Reporter.closeReport();
         web.quit();
+        
     }
 
     public void getComponentName() throws Exception {

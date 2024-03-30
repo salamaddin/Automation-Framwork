@@ -17,16 +17,6 @@ public class TestExecutor {
         }
     }
 
-//    private static void executeTest(String className) {
-//        try {
-//            Class<?> testClass = Class.forName(className);
-//            Object testInstance = testClass.getDeclaredConstructor().newInstance();
-//
-//            testClass.getMethod("executeTest").invoke(testInstance);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     public static void main(String[] args) {
         executeTests();

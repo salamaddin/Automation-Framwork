@@ -48,12 +48,16 @@ public class O {
 				ret = ret.replace("{{ATTR}}", "text()");
 			}
 			
+		}else if(type.equals("XP")) {
+			ret = xpath;
 		}
 		
 		if(contains == true) {
 			ret = ret.replace("[text()=", "[contains(text(),");
 			ret = ret.replace("]", ")]");
 		}
+			ret = ret+"##"+display;
+			
 		return ret;
 	}
 	
@@ -99,17 +103,8 @@ public class O {
 	}
 
 	public String xpath() {
-		return xpath;
+		return getPatternXpath("XP");
 	}
-//	
-//	public void setText(WebElement O, String data)
-//	{
-//		Reporter reporter = new Reporter();
-//		reporter.log("Enter username");
-//		reporter.log("Enter password");
-//		O.sendKeys(data);
-//		
-//	}
 
 }
 

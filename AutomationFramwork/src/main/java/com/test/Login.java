@@ -8,10 +8,9 @@ public class Login{
     public void executeTest(Base b) {
     	b.web.launchUrl("http://tutorialsninja.com/demo");
     	
-    	LoginPg login = new LoginPg(b);
-    	login.login();
-//        String user = b.getData("Username");
-//        String password = b.getData("Password");    	
+    	LoginPg loginPg = new LoginPg(b);
+    	loginPg.login();  
+    	loginPg.authenticationTest();
     
     }
 }

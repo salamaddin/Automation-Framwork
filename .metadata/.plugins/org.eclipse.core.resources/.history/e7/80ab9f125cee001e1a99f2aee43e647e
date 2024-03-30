@@ -1,0 +1,16 @@
+package Utils;
+
+import Lib.Files.Base;
+
+public class UI {
+	public Base b;
+	
+	public UI (Base b)
+	{
+		this.b = b;
+	}
+
+	public void setB(Base b) {
+		this.b = b;
+	}
+}
