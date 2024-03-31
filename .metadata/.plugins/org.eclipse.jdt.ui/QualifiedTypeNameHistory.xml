@@ -6,7 +6,18 @@
     <fullyQualifiedTypeName name="io.opentelemetry.exporter.logging.SystemOutLogRecordExporter"/>
     <fullyQualifiedTypeName name="com.codoid.products.exception.FilloException"/>
     <fullyQualifiedTypeName name="Utils.Web"/>
-    <fullyQualifiedTypeName name="Lib.Files.Base"/>
     <fullyQualifiedTypeName name="com.pages.LoginPg"/>
     <fullyQualifiedTypeName name="Utils.O"/>
+    <fullyQualifiedTypeName name="com.aventstack.extentreports.ExtentTest"/>
+    <fullyQualifiedTypeName name="com.aventstack.extentreports.ExtentReports"/>
+    <fullyQualifiedTypeName name="Utils.Reporter"/>
+    <fullyQualifiedTypeName name="Lib.Files.Base"/>
+    <fullyQualifiedTypeName name="org.checkerframework.checker.guieffect.qual.UI"/>
+    <fullyQualifiedTypeName name="Utils.UI"/>
+    <fullyQualifiedTypeName name="java.util.NoSuchElementException"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="org.openqa.selenium.TakesScreenshot"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
+    <fullyQualifiedTypeName name="com.aventstack.extentreports.MediaEntityBuilder"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,37 @@
+package Utils;
+
+import org.monte.media.Format;
+import org.monte.media.FormatKeys.MediaType;
+import org.monte.media.Registry;
+import org.monte.media.math.Rational;
+import org.monte.screenrecorder.ScreenRecorder;
+
+import java.awt.*;
+import java.io.File;
+
+public class ScreenRecorder {
+
+    private ScreenRecorder screenRecorder;
+
+    public void startRecording(String filePath) throws Exception {
+        GraphicsConfiguration gc = GraphicsEnvironment
+                .getLocalGraphicsEnvironment()
+                .getDefaultScreenDevice()
+                .getDefaultConfiguration();
+
+        this.screenRecorder = new ScreenRecorder(gc,
+                new Format(MediaTypeKey, MediaType.FILE, MimeTypeKey.MIME_AVI),
+                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey.PNG, FrameRateKey.valueOf(15),
+                        KeyFrameIntervalKey.valueOf(30)),
+                new Format(MediaTypeKey, MediaType.VIDEO, EncodingKey.VP8, FrameRateKey.valueOf(15),
+                        QualityKey.valueOf(0.5f)),
+                null, null, new File(filePath));
+
+        this.screenRecorder.start();
+    }
+
+    public void stopRecording() throws Exception {
+        this.screenRecorder.stop();
+    }
+}
+

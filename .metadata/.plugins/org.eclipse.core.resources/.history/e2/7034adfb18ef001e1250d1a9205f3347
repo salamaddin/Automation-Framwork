@@ -1,0 +1,48 @@
+package Utils;
+
+import org.monte.media.Format;
+import org.monte.media.FormatKeys;
+import org.monte.media.math.Rational;
+import org.monte.screenrecorder.ScreenRecorder;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
+public class ScreenRecorderUtil {
+
+    private ScreenRecorder screenRecorder;
+
+    public void startRecording(String filePath) throws Exception {
+        GraphicsConfiguration gc = GraphicsEnvironment
+                .getLocalGraphicsEnvironment()
+                .getDefaultScreenDevice()
+                .getDefaultConfiguration();
+
+        try {
+            this.screenRecorder = new ScreenRecorder(gc,
+                    new Format(FormatKeys.MediaType.FILE, FormatKeys.MimeTypeKey.MIME_AVI),
+                    new Format(FormatKeys.MediaType.VIDEO, FormatKeys.EncodingKey.PNG,
+                            FormatKeys.FrameRateKey.valueOf(15),
+                            FormatKeys.KeyFrameIntervalKey.valueOf(30)),
+                    new Format(FormatKeys.MediaType.VIDEO, FormatKeys.EncodingKey.VP8,
+                            FormatKeys.FrameRateKey.valueOf(15),
+                            FormatKeys.QualityKey.valueOf(0.5f)),
+                    null, null, new File(filePath));
+
+            this.screenRecorder.start();
+        } catch (IOException | AWTException e) {
+            System.err.println("Error starting screen recording: " + e.getMessage());
+            throw e;
+        }
+    }
+
+    public void stopRecording() throws Exception {
+        try {
+            this.screenRecorder.stop();
+        } catch (IOException e) {
+            System.err.println("Error stopping screen recording: " + e.getMessage());
+            throw e;
+        }
+    }
+}

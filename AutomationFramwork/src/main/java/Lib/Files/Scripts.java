@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 
 import Utils.Reporter;
+import Utils.ScreenRecorderUtil;
 import Utils.Web;
 
 public class Scripts {
@@ -19,6 +20,7 @@ public class Scripts {
     private Reporter reporter;
     private String masterDriverPath ="C:/Users/arka.sarkar/Desktop/Data/MasterDriver.xlsx";
     private String reportPath ="C:/Users/arka.sarkar/Desktop/Data/";
+    private String recordingPath ="C:/Users/arka.sarkar/Desktop/Data/";
 
     public Scripts() throws Exception {
         loadScripts();
@@ -51,6 +53,7 @@ public class Scripts {
         setNext();
         testData = new TestData(curr);
         web = new Web("chrome");
+        ScreenRecorderUtil.startRecord(recordingPath, curr.getTestID()+ "_"+ curr.getTestDescription());
         reporter = new Reporter(reportPath +curr.getTestID()+ "_"+ curr.getTestDescription());
         Reporter.createTest(curr.getTestTitle(), curr.getTestDescription());
         Base base = new Base();
@@ -78,6 +81,7 @@ public class Scripts {
 	              getComponentName();
             }
         }
+        ScreenRecorderUtil.stopRecord();
         Reporter.closeReport();
         web.quit();
         

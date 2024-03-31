@@ -1,0 +1,62 @@
+package Utils;
+import java.awt.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.ImageIO;
+
+public class ScreenRecorder {
+
+    private static final int FRAME_RATE = 10; // Frames per second
+    private final Rectangle screenBounds;
+    private Robot robot;
+    private BufferedImage lastCapturedImage;
+
+    public ScreenRecorder() throws AWTException {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        screenBounds = ge.getDefaultScreenDevice().getDefaultConfiguration().getBounds();
+        robot = new Robot();
+    }
+
+    public void startRecording(String outputPath) {
+        long startTime = System.currentTimeMillis();
+        long frameDelay = 1000 / FRAME_RATE;
+
+        try {
+            while (true) {
+                long frameStartTime = System.currentTimeMillis();
+
+                // Capture screen
+                BufferedImage image = robot.createScreenCapture(screenBounds);
+
+                // Save captured image
+                File output = new File(outputPath + File.separator + "frame_" + startTime + ".png");
+                ImageIO.write(image, "png", output);
+                
+                // Remember the last captured image
+                lastCapturedImage = image;
+
+                // Delay to maintain desired frame rate
+                long elapsedTime = System.currentTimeMillis() - frameStartTime;
+                long sleepTime = frameDelay - elapsedTime;
+                if (sleepTime > 0) {
+                    Thread.sleep(sleepTime);
+                }
+            }
+        } catch (IOException | InterruptedException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void stopRecording() {
+        // Clean up resources if needed
+    }
+
+    public BufferedImage getLastCapturedImage() {
+        return lastCapturedImage;
+    }
+
+    public static void main(String[] args) throws AWTException {
+        ScreenRecorder recorder = new ScreenRecorder();
+        recorder.startRecording("path/to/output/folder");
+    }
+}
