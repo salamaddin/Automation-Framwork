@@ -18,18 +18,17 @@ public class Scripts {
     private TestData testData;
     private Web web;
     private Reporter reporter;
-    private String masterDriverPath ="C:/Users/arka.sarkar/Desktop/Data/MasterDriver.xlsx";
-    private String reportPath ="C:/Users/arka.sarkar/Desktop/Data/";
-    private String recordingPath ="C:/Users/arka.sarkar/Desktop/Data/";
+    ReadPropertiesFile p = null;
 
     public Scripts() throws Exception {
+    	p = new ReadPropertiesFile();
         loadScripts();
     }
 
     public void loadScripts() throws Exception {
         xl = new FilloXL();
         scripts = new HashMap<Integer, Script>();
-        xl.getRecords(masterDriverPath, "Scripts", " Run='Y'");
+        xl.getRecords(p.getProperty("masterDriverPath"), "Scripts", " Run='Y'");
         while (xl.next()) {
             Script temp = new Script();
             temp.setTestID(xl.get("TestID"));
@@ -52,9 +51,9 @@ public class Scripts {
     public void executeTest() throws Exception {
         setNext();
         testData = new TestData(curr);
-        web = new Web("chrome");
-        ScreenRecorderUtil.startRecord(recordingPath, curr.getTestID()+ "_"+ curr.getTestDescription());
-        reporter = new Reporter(reportPath +curr.getTestID()+ "_"+ curr.getTestDescription());
+        web = new Web(p.getProperty("browserType"));
+        ScreenRecorderUtil.startRecord(p.getProperty("recordingPath"), curr.getTestID()+ "_"+ curr.getTestDescription());
+        reporter = new Reporter(p.getProperty("reportPath") +curr.getTestID()+ "_"+ curr.getTestDescription());
         Reporter.createTest(curr.getTestTitle(), curr.getTestDescription());
         Base base = new Base();
         base.setTestData(testData);
@@ -63,7 +62,7 @@ public class Scripts {
         
         index = 1;
         System.out.println("Current Test ID: " + curr.getTestID());
-        xl.getRecords(masterDriverPath, "Components"," TestID ='" + curr.getTestID() + "'");
+        xl.getRecords(p.getProperty("masterDriverPath"), "Components"," TestID ='" + curr.getTestID() + "'");
 
         while (xl.next()) {
             getComponentName();

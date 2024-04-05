@@ -20,4 +20,9 @@
     <fullyQualifiedTypeName name="org.openqa.selenium.TakesScreenshot"/>
     <fullyQualifiedTypeName name="java.util.UUID"/>
     <fullyQualifiedTypeName name="com.aventstack.extentreports.MediaEntityBuilder"/>
+    <fullyQualifiedTypeName name="org.monte.media.FormatKeys"/>
+    <fullyQualifiedTypeName name="org.monte.media.VideoFormatKeys"/>
+    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="org.apache.hc.core5.http.config.Registry"/>
 </qualifiedTypeNameHistroy>

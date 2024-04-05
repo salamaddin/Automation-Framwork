@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import Lib.Files.Base;
+import Lib.Files.ReadPropertiesFile;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Web extends Util {
@@ -22,7 +23,6 @@ public class Web extends Util {
 	WebElement element = null;
 	public String xpath="";
 	public String display ="";
-	private String screenShotPath ="C:/Users/arka.sarkar/Desktop/Data/screenshots/";
 
 	public Web(String browserType) {
 		if (browserType.equals("chrome")) {
@@ -75,9 +75,11 @@ public class Web extends Util {
 	}
 	
 	 public void screenShot(String fileName) {
+		 ReadPropertiesFile p = new ReadPropertiesFile();
 	        TakesScreenshot scrShot = ((TakesScreenshot) driver);
 	        File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
 	        try {
+	        String	screenShotPath = p.getProperty("screenShotPath");
 	            File destFile = new File(screenShotPath + fileName + ".jpg");
 	            FileUtils.copyFile(SrcFile, destFile);
 	            Reporter.attachScreenshot(screenShotPath + fileName + ".jpg", display);
